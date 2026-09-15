@@ -37,50 +37,50 @@ export default function LoveLetterSection() {
     <section
       id="letter"
       ref={containerRef}
-      className="py-40 px-6 md:px-12 bg-grain relative overflow-hidden"
+      className="py-40 px-6 md:px-12 bg-grain text-charcoal-900 dark:text-white relative overflow-hidden transition-colors duration-500"
     >
       {/* Soft Romantic Ambient Lighting */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-softPink-100/50 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-softPink-100/50 dark:bg-softPink-300/10 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="max-w-3xl mx-auto space-y-16 relative z-10">
         {/* Header */}
         <div className="text-center space-y-3">
-          <span className="text-xs uppercase tracking-widest text-babyBlue-500 font-sans font-medium flex items-center justify-center gap-1.5">
+          <span className="text-xs uppercase tracking-widest text-babyBlue-500 dark:text-babyBlue-300 font-sans font-medium flex items-center justify-center gap-1.5">
             <Heart className="w-3.5 h-3.5 text-softPink-300 fill-softPink-300" />
             <span>Chapter 09 — Intimate Letter</span>
           </span>
-          <h2 className="font-serif text-5xl md:text-7xl text-charcoal-900 font-semibold tracking-tight">
+          <h2 className="font-serif text-5xl md:text-7xl text-charcoal-900 dark:text-white font-semibold tracking-tight">
             FOR YOU
           </h2>
           <div className="w-16 h-0.5 bg-gradient-to-r from-babyBlue-300 to-softPink-300 mx-auto rounded-full" />
         </div>
 
         {/* Letter Body */}
-        <div className="glass-panel rounded-3xl p-8 md:p-14 space-y-8 shadow-xl border border-white">
-          <p className="letter-p font-serif text-2xl md:text-3xl text-charcoal-900 leading-relaxed font-normal italic">
-            "My dearest,"
+        <div className="glass-panel rounded-3xl p-8 md:p-14 space-y-8 shadow-xl border border-white dark:border-white/10">
+          <p className="letter-p font-serif text-2xl md:text-3xl text-charcoal-900 dark:text-white leading-relaxed font-normal italic">
+            "My Skipper,"
           </p>
 
-          <p className="letter-p text-charcoal-900/80 text-base md:text-xl font-sans leading-relaxed">
+          <p className="letter-p text-charcoal-900/80 dark:text-white/80 text-base md:text-xl font-sans leading-relaxed">
             Looking back through all of our photos, videos, and memories gathered in this digital journal,
             I am reminded of just how blessed I am to share this journey with you.
           </p>
 
-          <p className="letter-p text-charcoal-900/80 text-base md:text-xl font-sans leading-relaxed">
+          <p className="letter-p text-charcoal-900/80 dark:text-white/80 text-base md:text-xl font-sans leading-relaxed">
             Every single date on this calendar carries a spark of your laughter, every photo holds a quiet moment of happiness,
             and every video captures the motion of a love that grows deeper with each passing day.
           </p>
 
-          <p className="letter-p text-charcoal-900/80 text-base md:text-xl font-sans leading-relaxed">
+          <p className="letter-p text-charcoal-900/80 dark:text-white/80 text-base md:text-xl font-sans leading-relaxed">
             Thank you for being my anchor, my favorite smile, my biggest comfort, and my best friend.
           </p>
 
-          <div className="letter-p pt-6 border-t border-babyBlue-100 flex items-center justify-between">
+          <div className="letter-p pt-6 border-t border-babyBlue-100 dark:border-white/10 flex items-center justify-between">
             <div>
-              <span className="text-xs uppercase tracking-widest text-charcoal-900/40 font-sans block">
+              <span className="text-xs uppercase tracking-widest text-charcoal-900/40 dark:text-white/40 font-sans block">
                 Forever & Always
               </span>
-              <span className="font-serif text-2xl text-charcoal-900 font-semibold">
+              <span className="font-serif text-2xl text-charcoal-900 dark:text-white font-semibold">
                 Yours, Forever.
               </span>
             </div>

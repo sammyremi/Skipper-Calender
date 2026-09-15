@@ -62,17 +62,17 @@ export default function EditorialGallery() {
     >
       <div className="max-w-7xl mx-auto space-y-16">
         {/* Gallery Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-babyBlue-200/60">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-babyBlue-200/60 dark:border-white/10">
           <div className="space-y-3">
-            <span className="text-xs uppercase tracking-widest text-babyBlue-500 font-sans font-medium flex items-center gap-1.5">
+            <span className="text-xs uppercase tracking-widest text-babyBlue-500 dark:text-babyBlue-300 font-sans font-medium flex items-center gap-1.5">
               <Sparkles className="w-3.5 h-3.5" />
               <span>Chapter 04 — Editorial Curation</span>
             </span>
-            <h2 className="font-serif text-4xl md:text-6xl text-charcoal-900 font-semibold tracking-tight">
+            <h2 className="font-serif text-4xl md:text-6xl text-charcoal-900 dark:text-white font-semibold tracking-tight">
               Captured Moments
             </h2>
           </div>
-          <p className="text-charcoal-900/60 text-sm font-sans max-w-sm italic">
+          <p className="text-charcoal-900/60 dark:text-white/70 text-sm font-sans max-w-sm italic">
             An asymmetric editorial showcase of real frames from our daily life and adventures.
           </p>
         </div>

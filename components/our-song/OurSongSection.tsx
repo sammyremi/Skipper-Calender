@@ -8,21 +8,21 @@ export default function OurSongSection() {
   const [isPlaying, setIsPlaying] = useState(false);
 
   return (
-    <section className="py-32 px-6 md:px-12 bg-white relative overflow-hidden">
+    <section className="py-32 px-6 md:px-12 bg-white dark:bg-charcoal-950 text-charcoal-900 dark:text-white relative overflow-hidden transition-colors duration-500">
       <div className="max-w-4xl mx-auto space-y-12">
         {/* Header */}
         <div className="text-center space-y-2">
-          <span className="text-xs uppercase tracking-widest text-babyBlue-500 font-sans font-medium flex items-center justify-center gap-1.5">
+          <span className="text-xs uppercase tracking-widest text-babyBlue-500 dark:text-babyBlue-300 font-sans font-medium flex items-center justify-center gap-1.5">
             <Music className="w-3.5 h-3.5" />
             <span>Chapter 08 — Our Melody</span>
           </span>
-          <h2 className="font-serif text-4xl md:text-5xl text-charcoal-900 font-semibold tracking-tight">
+          <h2 className="font-serif text-4xl md:text-5xl text-charcoal-900 dark:text-white font-semibold tracking-tight">
             Our Special Song
           </h2>
         </div>
 
         {/* Custom Audio Player Deck */}
-        <div className="glass-panel rounded-3xl p-8 md:p-12 relative overflow-hidden flex flex-col md:flex-row items-center gap-8 md:gap-12 shadow-xl border border-babyBlue-200">
+        <div className="glass-panel rounded-3xl p-8 md:p-12 relative overflow-hidden flex flex-col md:flex-row items-center gap-8 md:gap-12 shadow-xl border border-babyBlue-200 dark:border-white/10">
           {/* Rotating Vinyl Record */}
           <div className="relative flex-shrink-0">
             <motion.div
@@ -45,13 +45,13 @@ export default function OurSongSection() {
           {/* Song Information & Controls */}
           <div className="flex-grow space-y-6 w-full text-center md:text-left">
             <div>
-              <span className="text-[10px] font-sans font-semibold uppercase tracking-widest text-babyBlue-500">
+              <span className="text-[10px] font-sans font-semibold uppercase tracking-widest text-babyBlue-500 dark:text-babyBlue-300">
                 Forever Playlist
               </span>
-              <h3 className="font-serif text-3xl md:text-4xl text-charcoal-900 font-semibold">
+              <h3 className="font-serif text-3xl md:text-4xl text-charcoal-900 dark:text-white font-semibold">
                 Lover & Soundtrack
               </h3>
-              <p className="text-charcoal-900/60 text-sm font-sans mt-1">
+              <p className="text-charcoal-900/60 dark:text-white/70 text-sm font-sans mt-1">
                 Our Anthem — Taylor Swift / Custom Romantic Selection
               </p>
             </div>

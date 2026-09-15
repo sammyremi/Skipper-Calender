@@ -100,22 +100,22 @@ export default function RomanticCalendar({
       className={`glass-panel rounded-3xl p-6 md:p-8 relative overflow-hidden transition-all duration-300 ${className}`}
     >
       {/* Decorative ambient gradient background */}
-      <div className="absolute -top-16 -right-16 w-48 h-48 rounded-full bg-babyBlue-100/50 blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-16 -left-16 w-48 h-48 rounded-full bg-softPink-100/50 blur-3xl pointer-events-none" />
+      <div className="absolute -top-16 -right-16 w-48 h-48 rounded-full bg-babyBlue-100/50 dark:bg-babyBlue-500/10 blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-16 -left-16 w-48 h-48 rounded-full bg-softPink-100/50 dark:bg-softPink-300/10 blur-3xl pointer-events-none" />
 
       {/* Calendar Header */}
-      <div className="relative z-10 flex items-center justify-between mb-6 pb-4 border-b border-babyBlue-100/70">
+      <div className="relative z-10 flex items-center justify-between mb-6 pb-4 border-b border-babyBlue-100/70 dark:border-white/10">
         <div>
-          <span className="text-[10px] uppercase tracking-widest text-charcoal-900/50 font-sans font-medium">
+          <span className="text-[10px] uppercase tracking-widest text-charcoal-900/50 dark:text-white/70 font-sans font-medium">
             Our Memory Journal
           </span>
           <div className="flex items-center gap-2 mt-0.5">
             <button
               onClick={() => setShowYearSelector(!showYearSelector)}
-              className="font-serif text-2xl md:text-3xl text-charcoal-900 font-semibold tracking-tight hover:text-babyBlue-500 transition-colors flex items-center gap-1 cursor-pointer"
+              className="font-serif text-2xl md:text-3xl text-charcoal-900 dark:text-white font-semibold tracking-tight hover:text-babyBlue-500 dark:hover:text-babyBlue-300 transition-colors flex items-center gap-1 cursor-pointer"
             >
               <span>{MONTH_NAMES[currentMonth]}</span>
-              <span className="text-babyBlue-500">{currentYear}</span>
+              <span className="text-babyBlue-500 dark:text-babyBlue-300">{currentYear}</span>
             </button>
           </div>
         </div>
@@ -124,24 +124,24 @@ export default function RomanticCalendar({
           {!isCurrentSystemMonth && (
             <button
               onClick={handleResetToToday}
-              className="px-3 py-1 rounded-full bg-babyBlue-50 text-babyBlue-600 text-[11px] font-sans font-medium tracking-wide border border-babyBlue-200/60 hover:bg-babyBlue-100 transition-all cursor-pointer"
+              className="px-3 py-1 rounded-full bg-babyBlue-50 dark:bg-babyBlue-500/20 text-babyBlue-600 dark:text-babyBlue-300 text-[11px] font-sans font-medium tracking-wide border border-babyBlue-200/60 dark:border-babyBlue-400/40 hover:bg-babyBlue-100 dark:hover:bg-babyBlue-500/30 transition-all cursor-pointer"
             >
               Today
             </button>
           )}
 
-          <div className="flex items-center gap-1 bg-white/80 p-1 rounded-full border border-babyBlue-100">
+          <div className="flex items-center gap-1 bg-white/80 dark:bg-white/10 p-1 rounded-full border border-babyBlue-100 dark:border-white/20">
             <button
               onClick={handlePrevMonth}
               aria-label="Previous month"
-              className="p-1.5 rounded-full hover:bg-babyBlue-50 text-charcoal-900/70 hover:text-babyBlue-500 transition-colors cursor-pointer"
+              className="p-1.5 rounded-full hover:bg-babyBlue-50 dark:hover:bg-white/20 text-charcoal-900/70 dark:text-white hover:text-babyBlue-500 transition-colors cursor-pointer"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
             <button
               onClick={handleNextMonth}
               aria-label="Next month"
-              className="p-1.5 rounded-full hover:bg-babyBlue-50 text-charcoal-900/70 hover:text-babyBlue-500 transition-colors cursor-pointer"
+              className="p-1.5 rounded-full hover:bg-babyBlue-50 dark:hover:bg-white/20 text-charcoal-900/70 dark:text-white hover:text-babyBlue-500 transition-colors cursor-pointer"
             >
               <ChevronRight className="w-4 h-4" />
             </button>
@@ -156,9 +156,9 @@ export default function RomanticCalendar({
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="mb-6 bg-white/90 rounded-2xl p-4 border border-babyBlue-200/60 shadow-inner z-20"
+            className="mb-6 bg-white/90 dark:bg-charcoal-900/95 text-charcoal-900 dark:text-white rounded-2xl p-4 border border-babyBlue-200/60 dark:border-white/20 shadow-inner z-20"
           >
-            <div className="text-xs uppercase tracking-widest text-charcoal-900/50 mb-2 font-medium">
+            <div className="text-xs uppercase tracking-widest text-charcoal-900/50 dark:text-white/60 mb-2 font-medium">
               Select Year & Month
             </div>
             <div className="flex gap-2 overflow-x-auto pb-2 no-scrollbar mb-3">
@@ -168,8 +168,8 @@ export default function RomanticCalendar({
                   onClick={() => setCurrentYear(y)}
                   className={`px-3 py-1 rounded-full text-xs font-sans font-medium transition-colors ${
                     currentYear === y
-                      ? "bg-charcoal-900 text-white"
-                      : "bg-babyBlue-50 text-charcoal-900/70 hover:bg-babyBlue-100"
+                      ? "bg-charcoal-900 dark:bg-white text-white dark:text-charcoal-950"
+                      : "bg-babyBlue-50 dark:bg-white/10 text-charcoal-900/70 dark:text-white hover:bg-babyBlue-100 dark:hover:bg-white/20"
                   }`}
                 >
                   {y}
@@ -187,7 +187,7 @@ export default function RomanticCalendar({
                   className={`py-1.5 px-2 rounded-xl text-xs font-sans transition-colors ${
                     currentMonth === idx
                       ? "bg-babyBlue-500 text-white font-medium"
-                      : "text-charcoal-900/80 hover:bg-babyBlue-50"
+                      : "text-charcoal-900/80 dark:text-white/80 hover:bg-babyBlue-50 dark:hover:bg-white/20"
                   }`}
                 >
                   {mName.substring(0, 3)}
@@ -203,7 +203,7 @@ export default function RomanticCalendar({
         {WEEKDAYS.map((day) => (
           <div
             key={day}
-            className="text-[11px] font-sans font-medium uppercase tracking-wider text-charcoal-900/40 py-1"
+            className="text-[11px] font-sans font-medium uppercase tracking-wider text-charcoal-900/40 dark:text-white/60 py-1"
           >
             {day}
           </div>
@@ -243,17 +243,17 @@ export default function RomanticCalendar({
               onClick={() => handleDateClick(day)}
               className={`h-9 md:h-11 rounded-2xl flex flex-col items-center justify-center relative transition-all duration-300 group cursor-pointer ${
                 isToday
-                  ? "bg-charcoal-900 text-white font-bold shadow-md scale-105"
+                  ? "bg-charcoal-900 dark:bg-white text-white dark:text-charcoal-950 font-bold shadow-md scale-105"
                   : hasMemory
-                  ? "bg-gradient-to-tr from-babyBlue-100/90 to-softPink-100/90 border border-babyBlue-300/80 text-charcoal-900 hover:scale-110 hover:shadow-lg"
-                  : "hover:bg-babyBlue-50/80 text-charcoal-900/80"
+                  ? "bg-gradient-to-tr from-babyBlue-100/90 to-softPink-100/90 dark:from-babyBlue-500/40 dark:to-softPink-300/40 border border-babyBlue-300/80 dark:border-babyBlue-300 text-charcoal-900 dark:text-white hover:scale-110 hover:shadow-lg"
+                  : "hover:bg-babyBlue-50/80 dark:hover:bg-white/20 text-charcoal-900/80 dark:text-white"
               }`}
             >
               <span className={`text-xs md:text-sm font-sans font-medium`}>{day}</span>
 
               {/* Memory Indicator Dot */}
               {hasMemory && (
-                <span className="w-1.5 h-1.5 rounded-full bg-babyBlue-500 absolute bottom-1 group-hover:scale-150 transition-transform animate-pulse" />
+                <span className="w-1.5 h-1.5 rounded-full bg-babyBlue-500 dark:bg-babyBlue-300 absolute bottom-1 group-hover:scale-150 transition-transform animate-pulse" />
               )}
             </button>
           );
@@ -261,12 +261,12 @@ export default function RomanticCalendar({
       </motion.div>
 
       {/* Legend Footer */}
-      <div className="mt-6 pt-3 border-t border-babyBlue-100/60 flex items-center justify-between text-[11px] font-sans text-charcoal-900/60">
+      <div className="mt-6 pt-3 border-t border-babyBlue-100/60 dark:border-white/10 flex items-center justify-between text-[11px] font-sans text-charcoal-900/60 dark:text-white/70">
         <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-babyBlue-500" />
+          <span className="w-2 h-2 rounded-full bg-babyBlue-500 dark:bg-babyBlue-300" />
           <span>Dates with memories</span>
         </div>
-        <span className="italic text-charcoal-900/40">Click any date to explore</span>
+        <span className="italic text-charcoal-900/40 dark:text-white/50">Click any date to explore</span>
       </div>
 
       {/* Memory Preview Modal */}
@@ -284,11 +284,11 @@ export default function RomanticCalendar({
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 20 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl border border-babyBlue-200 relative"
+              className="bg-white dark:bg-charcoal-900 text-charcoal-900 dark:text-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl border border-babyBlue-200 dark:border-white/20 relative"
             >
               <button
                 onClick={() => setSelectedMemory(null)}
-                className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-white/80 backdrop-blur-md flex items-center justify-center text-charcoal-900 hover:bg-white transition-colors cursor-pointer"
+                className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-white/80 dark:bg-charcoal-950/80 backdrop-blur-md flex items-center justify-center text-charcoal-900 dark:text-white hover:bg-white transition-colors cursor-pointer border border-white/20"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -325,13 +325,13 @@ export default function RomanticCalendar({
               {/* Memory Details */}
               <div className="p-6">
                 {selectedMemory.location && (
-                  <div className="flex items-center gap-1.5 text-xs font-sans text-babyBlue-600 font-medium mb-3">
+                  <div className="flex items-center gap-1.5 text-xs font-sans text-babyBlue-600 dark:text-babyBlue-300 font-medium mb-3">
                     <MapPin className="w-3.5 h-3.5" />
                     <span>{selectedMemory.location}</span>
                   </div>
                 )}
 
-                <p className="text-charcoal-900/80 text-sm leading-relaxed font-sans mb-6">
+                <p className="text-charcoal-900/80 dark:text-white/80 text-sm leading-relaxed font-sans mb-6">
                   {selectedMemory.description}
                 </p>
 

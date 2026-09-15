@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Heart, Volume2, VolumeX, Calendar as CalendarIcon } from "lucide-react";
+import { Heart, Volume2, VolumeX, Calendar as CalendarIcon, Sun, Moon } from "lucide-react";
 
 interface NavbarProps {
   onOpenCalendarModal?: () => void;
@@ -11,14 +11,35 @@ interface NavbarProps {
 export default function Navbar({ onOpenCalendarModal }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 80);
     };
     window.addEventListener("scroll", handleScroll);
+
+    // Initialize theme state from document / localStorage
+    const storedTheme = localStorage.getItem("theme");
+    if (storedTheme === "dark" || (!storedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+      setIsDarkMode(true);
+      document.documentElement.classList.add("dark");
+    }
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const toggleTheme = () => {
+    if (isDarkMode) {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+      setIsDarkMode(false);
+    } else {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+      setIsDarkMode(true);
+    }
+  };
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -99,6 +120,19 @@ export default function Navbar({ onOpenCalendarModal }: NavbarProps) {
               <span>Calendar</span>
             </button>
           )}
+
+          {/* Theme Toggle Button */}
+          <button
+            onClick={toggleTheme}
+            aria-label="Toggle Light and Dark Mode"
+            className="p-2.5 rounded-full bg-white/10 backdrop-blur-md border border-white/30 text-white hover:text-softPink-300 hover:border-softPink-300 hover:scale-110 transition-all cursor-pointer"
+          >
+            {isDarkMode ? (
+              <Sun className="w-4 h-4 text-babyBlue-300" />
+            ) : (
+              <Moon className="w-4 h-4 text-softPink-300" />
+            )}
+          </button>
 
           <button
             onClick={() => setIsMuted(!isMuted)}

@@ -37,15 +37,15 @@ export default function ThingsILoveSection() {
   }, []);
 
   return (
-    <section className="py-40 px-6 md:px-12 bg-grain relative overflow-hidden">
+    <section className="py-40 px-6 md:px-12 bg-grain text-charcoal-900 dark:text-white relative overflow-hidden transition-colors duration-500">
       <div className="max-w-4xl mx-auto space-y-24">
         {/* Section Header */}
         <div className="text-center space-y-3">
-          <span className="text-xs uppercase tracking-widest text-babyBlue-500 font-sans font-medium flex items-center justify-center gap-1.5">
+          <span className="text-xs uppercase tracking-widest text-babyBlue-500 dark:text-babyBlue-300 font-sans font-medium flex items-center justify-center gap-1.5">
             <Heart className="w-3.5 h-3.5 text-softPink-300 fill-softPink-300" />
             <span>Chapter 07 — Heartfelt Words</span>
           </span>
-          <h2 className="font-serif text-4xl md:text-6xl text-charcoal-900 font-semibold tracking-tight">
+          <h2 className="font-serif text-4xl md:text-6xl text-charcoal-900 dark:text-white font-semibold tracking-tight">
             Things I Love About You
           </h2>
         </div>
@@ -53,11 +53,11 @@ export default function ThingsILoveSection() {
         {/* Scroll Typography List */}
         <div className="space-y-16">
           {THINGS_I_LOVE.map((text, idx) => (
-            <div key={idx} className="love-line space-y-2 border-l-2 border-babyBlue-200 pl-6 md:pl-10">
-              <span className="text-xs font-sans font-bold uppercase tracking-widest text-babyBlue-400">
+            <div key={idx} className="love-line space-y-2 border-l-2 border-babyBlue-200 dark:border-babyBlue-400/40 pl-6 md:pl-10">
+              <span className="text-xs font-sans font-bold uppercase tracking-widest text-babyBlue-400 dark:text-babyBlue-300">
                 0{idx + 1}
               </span>
-              <p className="font-serif text-2xl md:text-4xl text-charcoal-900 font-medium leading-relaxed">
+              <p className="font-serif text-2xl md:text-4xl text-charcoal-900 dark:text-white font-medium leading-relaxed">
                 {text}
               </p>
             </div>

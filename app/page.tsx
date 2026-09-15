@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Preloader from "@/components/shared/Preloader";
 import Navbar from "@/components/shared/Navbar";
 import HeroSection from "@/components/hero/HeroSection";
 import OurStorySection from "@/components/story/OurStorySection";
@@ -21,6 +22,9 @@ export default function Home() {
 
   return (
     <main className="relative bg-grain text-charcoal-900 min-h-screen">
+      {/* Luxury Cinematic Preloader Screen */}
+      <Preloader />
+
       {/* Floating Navbar */}
       <Navbar onOpenCalendarModal={() => setIsCalendarModalOpen(true)} />
 
