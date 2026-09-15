@@ -3,7 +3,7 @@
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Calendar as CalendarIcon, Sparkles, X, MapPin, Tag } from "lucide-react";
-import { MEMORIES, Memory } from "@/data/memories";
+import { MEMORIES, Memory, getAssetPath } from "@/data/memories";
 
 const MONTH_NAMES = [
   "January", "February", "March", "April", "May", "June",
@@ -297,7 +297,7 @@ export default function RomanticCalendar({
               {selectedMemory.image && (
                 <div className="relative h-64 w-full bg-charcoal-900 overflow-hidden">
                   <img
-                    src={selectedMemory.image}
+                    src={getAssetPath(selectedMemory.image)}
                     alt={selectedMemory.title}
                     style={
                       selectedMemory.image.includes("hero1") || selectedMemory.image.includes("hero2")
@@ -338,7 +338,7 @@ export default function RomanticCalendar({
                 {selectedMemory.video && (
                   <div className="rounded-2xl overflow-hidden bg-charcoal-950 mb-4 border border-babyBlue-100">
                     <video
-                      src={selectedMemory.video}
+                      src={getAssetPath(selectedMemory.video)}
                       controls
                       autoPlay
                       muted

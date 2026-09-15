@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Heart, Calendar } from "lucide-react";
+import { getAssetPath } from "@/data/memories";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -126,7 +127,7 @@ export default function OurStorySection() {
                   <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white dark:border-white/20 bg-charcoal-950 group">
                     <div className="story-img aspect-[4/3] w-full overflow-hidden">
                       <img
-                        src={chapter.image}
+                        src={getAssetPath(chapter.image)}
                         alt={chapter.title}
                         style={
                           chapter.image.includes("hero1") || chapter.image.includes("hero2")

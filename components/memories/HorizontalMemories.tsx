@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Sparkles, MapPin } from "lucide-react";
+import { getAssetPath } from "@/data/memories";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -111,7 +112,7 @@ export default function HorizontalMemories() {
             >
               <div className="relative aspect-[16/10] rounded-3xl overflow-hidden shadow-2xl border border-white/10 bg-charcoal-900">
                 <img
-                  src={item.src}
+                  src={getAssetPath(item.src)}
                   alt={item.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 />

@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { VIDEO_ITEMS } from "@/data/memories";
+import { VIDEO_ITEMS, getAssetPath } from "@/data/memories";
 import { Play, Pause, Volume2, VolumeX, Sparkles, Film } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -92,7 +92,7 @@ export default function CinematicVideoSection() {
         >
           <video
             ref={videoElementRef}
-            src={currentVideo.src}
+            src={getAssetPath(currentVideo.src)}
             autoPlay
             loop
             muted={isMuted}

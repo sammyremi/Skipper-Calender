@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import RomanticCalendar from "@/components/calendar/RomanticCalendar";
 import { Sparkles, ArrowDown, Heart } from "lucide-react";
+import { getAssetPath } from "@/data/memories";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -96,7 +97,7 @@ export default function HeroSection() {
               }`}
             >
               <img
-                src={img.src}
+                src={getAssetPath(img.src)}
                 alt={img.alt}
                 style={{
                   filter: "grayscale(100%) contrast(106%) brightness(94%)",

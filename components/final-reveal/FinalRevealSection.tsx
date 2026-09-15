@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Heart, Sparkles, ArrowUp } from "lucide-react";
+import { getAssetPath } from "@/data/memories";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -91,7 +92,7 @@ export default function FinalRevealSection() {
         <div className="relative max-w-2xl mx-auto aspect-[16/10] rounded-3xl overflow-hidden shadow-2xl border border-white/20 bg-black">
           <img
             ref={imgRef}
-            src="/jpeg/hero1.png"
+            src={getAssetPath("/jpeg/hero1.png")}
             alt="Endless Love"
             style={{ filter: "grayscale(100%) contrast(106%)" }}
             className="w-full h-full object-cover grayscale"

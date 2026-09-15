@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { GALLERY_IMAGES } from "@/data/memories";
+import { GALLERY_IMAGES, getAssetPath } from "@/data/memories";
 import { Sparkles, Maximize2, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -103,7 +103,7 @@ export default function EditorialGallery() {
 
                 <div className={`relative ${img.aspect} w-full overflow-hidden`}>
                   <img
-                    src={img.src}
+                    src={getAssetPath(img.src)}
                     alt={img.title}
                     style={
                       img.src.includes("hero1") || img.src.includes("hero2")
@@ -160,7 +160,7 @@ export default function EditorialGallery() {
 
               <div className="md:w-3/4 h-[50vh] md:h-auto bg-black flex items-center justify-center">
                 <img
-                  src={activePhoto.src}
+                  src={getAssetPath(activePhoto.src)}
                   alt={activePhoto.title}
                   style={
                     activePhoto.src.includes("hero1") || activePhoto.src.includes("hero2")
