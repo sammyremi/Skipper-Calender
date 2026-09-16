@@ -10,7 +10,10 @@ export interface Memory {
   featured?: boolean;
 }
 
-export const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+export const basePath =
+  process.env.NEXT_PUBLIC_BASE_PATH !== undefined
+    ? process.env.NEXT_PUBLIC_BASE_PATH
+    : "/Skipper-Calender";
 
 export function getAssetPath(path?: string): string {
   if (!path) return "";
