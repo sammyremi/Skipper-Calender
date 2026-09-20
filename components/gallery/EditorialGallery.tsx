@@ -6,8 +6,18 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { GALLERY_IMAGES, getAssetPath } from "@/data/memories";
 import { Sparkles, Maximize2, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import ScrollFocusList from "@/components/shared/ScrollFocusList";
 
 gsap.registerPlugin(ScrollTrigger);
+
+// Curated editorial captions for the scroll-focus sub-section of Chapter 04
+const GALLERY_FOCUS_ITEMS = [
+  { number: "01", text: "Every photograph is a frozen second of something real between us." },
+  { number: "02", text: "The candid frames are always the ones that say the most." },
+  { number: "03", text: "In every light, every angle — you are effortlessly beautiful." },
+  { number: "04", text: "These aren't just photos. They are proof of a love that actually happened." },
+  { number: "05", text: "One day we'll look back at all of these and smile at how far we've come." },
+];
 
 export default function EditorialGallery() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -197,6 +207,14 @@ export default function EditorialGallery() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Chapter 04 — Cinematic Scroll Focus Caption Layer */}
+      <ScrollFocusList
+        items={GALLERY_FOCUS_ITEMS}
+        imageUrl="/jpeg/IMG_5091.jpg"
+        imageAlt="A quiet editorial moment between us"
+        imageRight={true}
+      />
     </section>
   );
 }

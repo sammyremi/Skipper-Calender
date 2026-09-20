@@ -52,11 +52,88 @@ export default function Navbar({ onOpenCalendarModal }: NavbarProps) {
     <header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
         isScrolled
-          ? "py-3 bg-charcoal-950/80 backdrop-blur-md border-b border-white/10 shadow-lg"
-          : "py-6 bg-transparent"
+          ? "bg-charcoal-950/85 backdrop-blur-md border-b border-white/10 shadow-lg"
+          : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
+      {/* ─── MOBILE LAYOUT (below md) ─────────────────────────────── */}
+      <div className="md:hidden flex flex-col items-center pt-4 pb-3 px-4 gap-1.5">
+        {/* Row 1: S & A centered + action icons top-right */}
+        <div className="w-full flex items-start justify-between">
+          {/* Spacer */}
+          <div className="w-20" />
+
+          {/* Centered identity */}
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="flex flex-col items-center cursor-pointer"
+          >
+            <span className="font-serif text-xl tracking-wider text-white font-semibold leading-tight">
+              S &amp; A
+            </span>
+            <span className="text-[9px] tracking-widest text-white/70 uppercase font-sans">
+              Our Digital Chapter
+            </span>
+          </button>
+
+          {/* Action icons */}
+          <div className="flex items-center gap-1.5">
+            {onOpenCalendarModal && (
+              <button
+                onClick={onOpenCalendarModal}
+                aria-label="Open calendar"
+                className="p-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:border-softPink-300 transition-all cursor-pointer"
+              >
+                <CalendarIcon className="w-3.5 h-3.5 text-softPink-300" />
+              </button>
+            )}
+            <button
+              onClick={toggleTheme}
+              aria-label="Toggle light and dark mode"
+              className="p-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:border-softPink-300 transition-all cursor-pointer"
+            >
+              {isDarkMode ? (
+                <Sun className="w-3.5 h-3.5 text-babyBlue-300" />
+              ) : (
+                <Moon className="w-3.5 h-3.5 text-softPink-300" />
+              )}
+            </button>
+            <button
+              onClick={() => setIsMuted(!isMuted)}
+              aria-label="Toggle ambient music"
+              className="p-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:border-softPink-300 transition-all cursor-pointer"
+            >
+              {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5 text-softPink-300" />}
+            </button>
+          </div>
+        </div>
+
+        {/* Row 2: Navigation — horizontally scrollable */}
+        <nav
+          className="flex items-center gap-5 overflow-x-auto no-scrollbar font-sans text-[10px] uppercase tracking-widest font-medium text-white/90 w-full justify-center"
+          role="navigation"
+          aria-label="Main navigation"
+        >
+          {[
+            { label: "Our Story", id: "story" },
+            { label: "Memories", id: "memories" },
+            { label: "Gallery", id: "gallery" },
+            { label: "Videos", id: "videos" },
+            { label: "For You", id: "letter" },
+          ].map(({ label, id }) => (
+            <button
+              key={id}
+              onClick={() => scrollToSection(id)}
+              className="flex-shrink-0 hover:text-softPink-300 transition-colors cursor-pointer"
+            >
+              {label}
+            </button>
+          ))}
+        </nav>
+      </div>
+
+      {/* ─── DESKTOP LAYOUT (md and above) ──────────────────────────── */}
+      <div className="hidden md:flex max-w-7xl mx-auto px-6 md:px-12 py-5 items-center justify-between">
         {/* Monogram Badge */}
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
@@ -67,7 +144,7 @@ export default function Navbar({ onOpenCalendarModal }: NavbarProps) {
           </div>
           <div className="flex flex-col text-left">
             <span className="font-serif text-lg tracking-wider text-white font-semibold leading-tight group-hover:text-softPink-300 group-hover:scale-105 origin-left transition-all duration-300">
-              S & A
+              S &amp; A
             </span>
             <span className="text-[10px] tracking-widest text-white/70 uppercase font-sans group-hover:text-softPink-200 transition-colors duration-300">
               Our Digital Chapter
@@ -76,37 +153,26 @@ export default function Navbar({ onOpenCalendarModal }: NavbarProps) {
         </button>
 
         {/* Navigation Links */}
-        <nav className="hidden md:flex items-center gap-8 font-sans text-xs uppercase tracking-widest font-medium text-white">
-          <button
-            onClick={() => scrollToSection("story")}
-            className="hover:text-softPink-300 hover:scale-115 transition-all duration-300 cursor-pointer origin-center inline-block"
-          >
-            Our Story
-          </button>
-          <button
-            onClick={() => scrollToSection("memories")}
-            className="hover:text-softPink-300 hover:scale-115 transition-all duration-300 cursor-pointer origin-center inline-block"
-          >
-            Memories
-          </button>
-          <button
-            onClick={() => scrollToSection("gallery")}
-            className="hover:text-softPink-300 hover:scale-115 transition-all duration-300 cursor-pointer origin-center inline-block"
-          >
-            Gallery
-          </button>
-          <button
-            onClick={() => scrollToSection("videos")}
-            className="hover:text-softPink-300 hover:scale-115 transition-all duration-300 cursor-pointer origin-center inline-block"
-          >
-            Videos
-          </button>
-          <button
-            onClick={() => scrollToSection("letter")}
-            className="hover:text-softPink-300 hover:scale-115 transition-all duration-300 cursor-pointer origin-center inline-block"
-          >
-            For You
-          </button>
+        <nav
+          className="flex items-center gap-8 font-sans text-xs uppercase tracking-widest font-medium text-white"
+          role="navigation"
+          aria-label="Main navigation"
+        >
+          {[
+            { label: "Our Story", id: "story" },
+            { label: "Memories", id: "memories" },
+            { label: "Gallery", id: "gallery" },
+            { label: "Videos", id: "videos" },
+            { label: "For You", id: "letter" },
+          ].map(({ label, id }) => (
+            <button
+              key={id}
+              onClick={() => scrollToSection(id)}
+              className="hover:text-softPink-300 hover:scale-115 transition-all duration-300 cursor-pointer origin-center inline-block"
+            >
+              {label}
+            </button>
+          ))}
         </nav>
 
         {/* Quick Actions */}
@@ -121,7 +187,7 @@ export default function Navbar({ onOpenCalendarModal }: NavbarProps) {
             </button>
           )}
 
-          {/* Theme Toggle Button */}
+          {/* Theme Toggle */}
           <button
             onClick={toggleTheme}
             aria-label="Toggle Light and Dark Mode"
