@@ -3,6 +3,7 @@ import { Inter, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/shared/SmoothScroll";
 import CustomCursor from "@/components/shared/CustomCursor";
+import LoveSparkles from "@/components/shared/LoveSparkles";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -32,6 +33,7 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${cormorant.variable}`}>
       <body className="antialiased selection:bg-babyBlue-100 selection:text-charcoal-900">
         <CustomCursor />
+        <LoveSparkles />
         <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
