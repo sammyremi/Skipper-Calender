@@ -241,9 +241,9 @@ export default function RomanticCalendar({
             <button
               key={day}
               onClick={() => handleDateClick(day)}
-              className={`h-9 md:h-11 rounded-2xl flex flex-col items-center justify-center relative transition-all duration-300 group cursor-pointer ${
+              className={`h-9 md:h-11 rounded-full flex flex-col items-center justify-center relative transition-all duration-300 group cursor-pointer ${
                 isToday
-                  ? "bg-charcoal-900 dark:bg-white text-white dark:text-charcoal-950 font-bold shadow-md scale-105"
+                  ? "ring-2 ring-softPink-300 ring-offset-1 ring-offset-white dark:ring-offset-charcoal-950 text-charcoal-900 dark:text-white font-bold scale-105"
                   : hasMemory
                   ? "bg-gradient-to-tr from-babyBlue-100/90 to-softPink-100/90 dark:from-babyBlue-500/40 dark:to-softPink-300/40 border border-babyBlue-300/80 dark:border-babyBlue-300 text-charcoal-900 dark:text-white hover:scale-110 hover:shadow-lg"
                   : "hover:bg-babyBlue-50/80 dark:hover:bg-white/20 text-charcoal-900/80 dark:text-white"
@@ -261,12 +261,18 @@ export default function RomanticCalendar({
       </motion.div>
 
       {/* Legend Footer */}
-      <div className="mt-6 pt-3 border-t border-babyBlue-100/60 dark:border-white/10 flex items-center justify-between text-[11px] font-sans text-charcoal-900/60 dark:text-white/70">
-        <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-babyBlue-500 dark:bg-babyBlue-300" />
-          <span>Dates with memories</span>
+      <div className="mt-6 pt-3 border-t border-babyBlue-100/60 dark:border-white/10 flex flex-col gap-1.5 text-[11px] font-sans text-charcoal-900/60 dark:text-white/70">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-babyBlue-500 dark:bg-babyBlue-300" />
+            <span>Dates with memories</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="w-4 h-4 rounded-full ring-2 ring-softPink-300 inline-flex items-center justify-center" />
+            <span>Today</span>
+          </div>
         </div>
-        <span className="italic text-charcoal-900/40 dark:text-white/50">Click any date to explore</span>
+        <span className="italic text-charcoal-900/40 dark:text-white/50 text-center">Click any date to explore</span>
       </div>
 
       {/* Memory Preview Modal */}

@@ -1,69 +1,33 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { THINGS_I_LOVE } from "@/data/memories";
 import { Heart } from "lucide-react";
+import ScrollFocusList from "@/components/shared/ScrollFocusList";
+import { THINGS_I_LOVE } from "@/data/memories";
 
-gsap.registerPlugin(ScrollTrigger);
+const focusItems = THINGS_I_LOVE.map((text, idx) => ({
+  number: `0${idx + 1}`,
+  text,
+}));
 
 export default function ThingsILoveSection() {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const lines = container.querySelectorAll(".love-line");
-
-    lines.forEach((line) => {
-      gsap.fromTo(
-        line,
-        { opacity: 0.15, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          scrollTrigger: {
-            trigger: line,
-            start: "top 80%",
-            end: "top 40%",
-            scrub: 1,
-          },
-        }
-      );
-    });
-  }, []);
-
   return (
-    <section className="py-40 px-6 md:px-12 bg-grain text-charcoal-900 dark:text-white relative overflow-hidden transition-colors duration-500">
-      <div className="max-w-4xl mx-auto space-y-24">
-        {/* Section Header */}
-        <div className="text-center space-y-3">
-          <span className="text-xs uppercase tracking-widest text-babyBlue-500 dark:text-babyBlue-300 font-sans font-medium flex items-center justify-center gap-1.5">
-            <Heart className="w-3.5 h-3.5 text-softPink-300 fill-softPink-300" />
-            <span>Chapter 07 — Heartfelt Words</span>
-          </span>
-          <h2 className="font-serif text-4xl md:text-6xl text-charcoal-900 dark:text-white font-semibold tracking-tight">
-            Things I Love About You
-          </h2>
-        </div>
-
-        {/* Scroll Typography List */}
-        <div className="space-y-16">
-          {THINGS_I_LOVE.map((text, idx) => (
-            <div key={idx} className="love-line space-y-2 border-l-2 border-babyBlue-200 dark:border-babyBlue-400/40 pl-6 md:pl-10">
-              <span className="text-xs font-sans font-bold uppercase tracking-widest text-babyBlue-400 dark:text-babyBlue-300">
-                0{idx + 1}
-              </span>
-              <p className="font-serif text-2xl md:text-4xl text-charcoal-900 dark:text-white font-medium leading-relaxed">
-                {text}
-              </p>
-            </div>
-          ))}
-        </div>
+    <section id="things-i-love" className="relative overflow-hidden">
+      {/* Section label — visible before the pinned scroll section */}
+      <div className="text-center pt-24 pb-8 px-6 bg-grain dark:bg-charcoal-950 transition-colors duration-500">
+        <span className="text-xs uppercase tracking-widest text-babyBlue-500 dark:text-babyBlue-300 font-sans font-medium inline-flex items-center gap-1.5">
+          <Heart className="w-3.5 h-3.5 text-softPink-300 fill-softPink-300" />
+          <span>Chapter 07 — Heartfelt Words</span>
+        </span>
       </div>
+
+      {/* Cinematic ScrollFocusList */}
+      <ScrollFocusList
+        items={focusItems}
+        imageUrl="/jpeg/IMG_5855.jpg"
+        imageAlt="A moment captured between us"
+        imageRight={false}
+        heading="Things I Love About You"
+      />
     </section>
   );
 }

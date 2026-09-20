@@ -27,6 +27,14 @@ const STORY_CHAPTERS = [
     date: "Throughout 2025",
   },
   {
+    year: "2025",
+    subtitle: "STILL GROWING",
+    title: "Autumn Walks & Quiet Closeness",
+    description: "The season changed, but what never changed was how right it always felt to simply be near you.",
+    image: "/jpeg/IMG_5089.jpg",
+    date: "Autumn 2025",
+  },
+  {
     year: "2026",
     subtitle: "WHERE WE ARE NOW",
     title: "Building Our Beautiful Tomorrow",
@@ -35,6 +43,7 @@ const STORY_CHAPTERS = [
     date: "Present Day",
   },
 ];
+
 
 export default function OurStorySection() {
   const containerRef = useRef<HTMLDivElement>(null);

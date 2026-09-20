@@ -45,7 +45,14 @@ const HORIZONTAL_ITEMS = [
     subtitle: "Warm tea, soft blankets, and your warmth",
     tag: "March 2026",
   },
+  {
+    src: "/jpeg/IMG_4600.jpg",
+    title: "Holiday Season Together",
+    subtitle: "The warmth of December with you by my side",
+    tag: "December 2025",
+  },
 ];
+
 
 export default function HorizontalMemories() {
   const targetRef = useRef<HTMLDivElement>(null);
