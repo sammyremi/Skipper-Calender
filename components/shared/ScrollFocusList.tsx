@@ -55,91 +55,87 @@ export default function ScrollFocusList({
     }
 
     const totalItems = items.length;
-    // How many viewport heights the section takes while pinned
-    const scrollDistance = totalItems * 80; // 80vh per item
+    if (totalItems === 0) return;
 
-    // Set initial state: first item focused, rest blurred
+    // Slower scroll pacing: ~220vh per item on desktop, ~160vh on mobile
+    const isMobile = window.innerWidth < 768;
+    const vhPerItem = isMobile ? 160 : 220;
+    const scrollDistance = totalItems * vhPerItem;
+
+    // Set initial states: item 0 focused, rest softly blurred
     itemsRef.current.forEach((item, idx) => {
       if (!item) return;
       if (idx === 0) {
         gsap.set(item, { opacity: 1, filter: "blur(0px)", scale: 1 });
       } else {
         gsap.set(item, {
-          opacity: 0.3,
-          filter: "blur(4px)",
-          scale: 0.98,
+          opacity: 0.35,
+          filter: "blur(4.5px)",
+          scale: 0.97,
         });
       }
     });
 
-    // Subtle parallax on image
-    if (stickyImageRef.current) {
-      gsap.fromTo(
-        stickyImageRef.current,
-        { y: 0 },
-        {
-          y: -40,
-          ease: "none",
-          scrollTrigger: {
-            trigger: container,
-            start: "top top",
-            end: `+=${scrollDistance}vh`,
-            scrub: 2,
-          },
-        }
-      );
-    }
-
-    // Per-item focus animation driven by scroll progress
-    itemsRef.current.forEach((item, activeIdx) => {
-      if (!item) return;
-
-      const trigger = ScrollTrigger.create({
-        trigger: container,
-        start: "top top",
-        end: `+=${scrollDistance}vh`,
-        scrub: 1.2,
-        onUpdate: (self) => {
-          const progress = self.progress; // 0 → 1
-          // Which item index should be "active" at this scroll position
-          const activeProgress = progress * (totalItems - 1);
-          const distance = Math.abs(activeProgress - activeIdx);
-
-          // Blur: 0 when active, up to 5px when far
-          const blurAmount = Math.min(5, distance * 2.5);
-          // Opacity: 1 when active, down to 0.2 when far
-          const opacity = Math.max(0.2, 1 - distance * 0.35);
-          // Scale: 1 when active, slightly smaller when far
-          const scale = Math.max(0.96, 1 - distance * 0.015);
-
-          gsap.to(item, {
-            opacity,
-            filter: `blur(${blurAmount}px)`,
-            scale,
-            duration: 0.1,
-            ease: "none",
-            overwrite: "auto",
-          });
-        },
-      });
-
-      return () => trigger.kill();
-    });
-
-    // Pin the section while scrolling through items
-    const pin = ScrollTrigger.create({
+    // Master ScrollTrigger handling section pin, 3-phase item focus/hold/exit, and image parallax
+    const masterTrigger = ScrollTrigger.create({
       trigger: container,
       start: "top top",
       end: `+=${scrollDistance}vh`,
       pin: true,
       anticipatePin: 1,
+      scrub: 0.8,
+      onUpdate: (self) => {
+        const progress = self.progress; // 0 to 1
+        const step = totalItems > 1 ? 1 / (totalItems - 1) : 1;
+        // Hold phase radius: 28% of step width for dedicated reading window
+        const holdR = step * 0.28;
+        // Transition radius: 72% of step width for smooth cross-fade
+        const transR = step * 0.72;
+
+        itemsRef.current.forEach((item, idx) => {
+          if (!item) return;
+
+          const targetP = totalItems > 1 ? idx / (totalItems - 1) : 0;
+          const diff = Math.abs(progress - targetP);
+
+          let t = 0;
+          if (diff <= holdR) {
+            // Phase 2: HOLD / READING — 100% focused, sharp, fully visible
+            t = 0;
+          } else if (diff >= transR) {
+            // Out of range: softly blurred and reduced opacity
+            t = 1;
+          } else {
+            // Phase 1 / Phase 3: ENTER & EXIT — smoothstep interpolation
+            const rawT = (diff - holdR) / (transR - holdR);
+            t = rawT * rawT * (3 - 2 * rawT);
+          }
+
+          const blurAmount = (t * 4.5).toFixed(2);
+          const opacity = (1 - t * 0.65).toFixed(3);
+          const scale = (1 - t * 0.03).toFixed(3);
+
+          gsap.to(item, {
+            opacity: Number(opacity),
+            filter: `blur(${blurAmount}px)`,
+            scale: Number(scale),
+            duration: 0.15,
+            ease: "none",
+            overwrite: "auto",
+          });
+        });
+
+        // Subtle, steady parallax on sticky image
+        if (stickyImageRef.current) {
+          gsap.set(stickyImageRef.current, {
+            y: -progress * 30,
+          });
+        }
+      },
     });
 
     return () => {
-      pin.kill();
-      ScrollTrigger.getAll()
-        .filter((t) => t.trigger === container)
-        .forEach((t) => t.kill());
+      masterTrigger.kill();
     };
   }, [items]);
 
